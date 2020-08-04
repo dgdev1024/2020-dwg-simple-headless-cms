@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  section.section.login
+    .container.login__container
+      h2.heading.heading--large.
+        Log In
+      form.form(action="/login", method="POST")
+
+        if error
+          p.text.text--error #{error.message}
+
+        .form__element
+          label.label(for="username").
+            Enter Your Username:
+          input#username.input(
+            type="text",
+            name="username",
+            placeholder="Enter your username"
+          )
+
+        .form__element
+          label.label(for="password").
+            Enter Your Password
+          input#password.input.input--password(
+            type="password",
+            name="password",
+            placeholder="Enter your password"
+          )
+
+        .form__element
+          button.button.button--confirm.button--submit(type="submit").
+            Log In

@@ -126,4 +126,12 @@ checkForRequiredEnv([
     criteria: /^(mongodb:(?:\/{2})?)((\w+?):(\w+?)@|:?@?)(\w+?)(:(\d+))?\/(\w+?)$/,
     message: "'MONGODB_URI' must be a MongoDB database URL.",
   },
+  {
+    key: "AUTH_SECRET",
+    criteria: (value) => value.length === 32,
+    message: "'AUTH_SECRET' must be exactly 32 characters in length.",
+  },
+  {
+    key: "SESSION_SECRET",
+  },
 ]);

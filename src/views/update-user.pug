@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  section.section.update-user
+    .container.update-user__container
+      if isAdmin === 'true'
+        h2.heading.heading--large.
+          Update User
+        p.text.
+          Use the form below to update a user's details. Leave the Target
+          Username textbox blank to update your own user details.
+      else
+        h2.heading.heading--large.
+          Update Your Details
+        p.text.
+          Use the form below to update your user details.
+      form.form(action="/update-user", method="POST")
+
+        if error
+          p.text.text--error #{error.message}
+          if errorDetails.validationErrors
+            ul.list.list--error
+              each validationError in errorDetails.validationErrors
+                li.list-item #{validationError}
+
+        if isAdmin === 'true'
+          .form__element
+            label.label(for="old-username").
+              Target Username (Leave blank to update your own user details):
+            input#old-username.input(
+              type="text",
+              name="oldUsername",
+              placeholder="Enter Target Username"
+            )
+
+        .form__element
+          label.label(for="username").
+            Enter a New Username:
+          input#username.input(
+            type="text",
+            name="newUsername",
+            placeholder="Enter a New Username"
+          )
+
+        .form__element
+          label.label(for="password").
+            Enter a New Password:
+          input#password.input.input--password(
+            type="password",
+            name="newPassword",
+            placeholder="Enter a New Password"
+          )
+
+        .form__element
+          input#new-keys.input.input--checkbox(
+            type="checkbox",
+            name="newKeys"
+          )
+          label.label(for="new-keys").
+            Request new API keys.
+
+        if isAdmin === 'true'
+          .form__element
+            input#admin.input.input--checkbox(
+              type="checkbox",
+              name="admin",
+              checked=(isAdmin === 'true')
+            )
+            label.label(for="admin").
+              This will be an administrator user.
+
+        .form__element
+          button.button.button--confirm.button--submit(type="submit").
+            Update User

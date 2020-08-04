@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  section.section.create-user
+    .container.create-user__container
+      h2.heading.heading--large.
+        Create New User
+      p.text.
+        Use the form below to create a new user, so they can use your CMS
+        installation.
+      form.form(action="/create-user", method="POST")
+
+        if error
+          p.text.text--error #{error.message}
+          if errorDetails.validationErrors
+            ul.list.list--error
+              each validationError in errorDetails.validationErrors
+                li.list-item #{validationError}
+
+        else if successMessage
+          p.text.text--success #{successMessage}
+
+        .form__element
+          label.label(for="username").
+            Create a Username:
+          input#username.input(
+            type="text",
+            name="username",
+            placeholder="Create a username"
+          )
+
+        .form__element
+          label.label(for="password").
+            Create a Password
+          input#password.input.input--password(
+            type="password",
+            name="password",
+            placeholder="Create a password"
+          )
+
+        .form__element
+          input#admin.input.input--checkbox(
+            type="checkbox"
+            name="admin"
+          )
+          label.label(for="admin").
+            This will be an administrator user.
+
+        .form__element
+          button.button.button--confirm.button--submit(type="submit").
+            Create User

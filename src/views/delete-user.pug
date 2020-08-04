@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  section.section.create-user
+    .container.create-user__container
+      h2.heading.heading--large.
+        Delete User
+
+      if isAdmin === 'true'
+        p.text.
+          Enter the username of the user you wish to delete.
+
+        form.form(action="/delete-user", method="POST")
+          if error
+            p.text.text--error #{error.message}
+
+          .form__element
+            label.label(for="username").
+              Target Username
+            input#username.input(
+              type="text",
+              name="username",
+              placeholder="Enter a Username"
+            )
+
+          .form__element
+            button.button.button--danger(type="submit") Delete User
+
+      else
+
+        p.text.text-danger.
+          Your account and all of your posts will be deleted! Are you sure
+          you want to do this?!
+
+        form.form(action="/delete-user", method="POST")
+          button.button.button--danger(type="submit") Yes, Delete My Account
+          a.button(href="/") No, Back To Safety!

@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  section.section.setup
+    .container.setup__container
+      h2.heading.heading--large.
+        CMS Setup
+      p.text.
+        Use the form below to create an administrator user and begin
+        using your new CMS installation.
+      form.form(action="/setup", method="POST")
+
+        if error
+          p.text.text--error #{error.message}
+          if errorDetails.validationErrors
+            ul.list.list--error
+              each validationError in errorDetails.validationErrors
+                li.list-item #{validationError}
+
+        .form__element
+          label.label(for="username").
+            Create a Username:
+          input#username.input(
+            type="text",
+            name="username",
+            placeholder="Create a username"
+          )
+
+        .form__element
+          label.label(for="password").
+            Create a Password
+          input#password.input.input--password(
+            type="password",
+            name="password",
+            placeholder="Create a password"
+          )
+
+        .form__element
+          button.button.button--confirm.button--submit(type="submit").
+            Create Admin User
