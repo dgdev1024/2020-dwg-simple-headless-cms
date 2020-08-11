@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  section.section.post-editor
+    .container.post-editor__container
+      h2.heading.heading--large Post Editor
+      p.text.
+        Use the form below to #{editing === 'true' ? 'edit' : 'create'} your post.#[br]
+        You can format your post using Markdown syntax. You can learn more about Markdown here:
+        #[a.link(href="https://commonmark.org/help/", target="_blank") https://commonmark.org/help/]
+
+      form.form(
+        method="POST",
+        action=(editing === 'true' ? `/edit-post/${post.id}` : '/create-post')
+      )
+        if error
+          p.text.text--error #{error.message}
+          if errorDetails.validationErrors
+            ul.list.list--error
+              each validationError in errorDetails.validationErrors
+                li.list-item #{validationError}
+
+        .form-element
+          label.label(for="title") Post Title
+          input#title.input(
+            type="text"
+            name="title"
+            value=(editing === 'true' && post.title)
+            placeholder="Enter a Title"
+          )
+
+        .form-element
+          label.label(for="body") Post Body
+          textarea#body.textarea(
+            name="body",
+            placeholder="Write out your post"
+          ).
+            #{editing === 'true' ? post.body : ''}
+
+        .form-element.form-element--button-grid
+          if editing === 'true'
+            button.button.button--confirm(type="submit") Finish Editing
+          else
+            button.button.button--confirm(type="submit") Create Post

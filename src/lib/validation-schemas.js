@@ -61,8 +61,23 @@ const apiCredentials = yup.object().shape({
   apiSecret: yup.string().required("Missing API secret."),
 });
 
+// Validate a blog post submission
+const blogPost = yup.object().shape({
+  title: yup
+    .string()
+    .required("Please provide a title.")
+    .min(5, "Your post title must contain at least 5 characters.")
+    .max(100, "Your post title must contain at most 100 characters."),
+  body: yup
+    .string()
+    .required("Please post something!")
+    .min(20, "Your post must contain at least 20 characters.")
+    .max(10000, "Your post must contain at most 10,000 characters."),
+});
+
 module.exports = {
   userCreation,
   userUpdate,
   apiCredentials,
+  blogPost,
 };

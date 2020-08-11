@@ -52,7 +52,7 @@ const createAdminUser = async (req, res) => {
 
   // Redirect to home.
   console.log("done");
-  return res.redirect("/");
+  return res.status(200).redirect("/");
 };
 
 module.exports = {

@@ -9,6 +9,7 @@ const passport = require("passport");
 const passportLocal = require("../lib/passport-strategies").local;
 const setup = require("../controllers/setup");
 const user = require("../controllers/user");
+const blogPost = require("../controllers/post");
 const userModel = require("../models/user");
 const router = Router();
 
@@ -51,7 +52,7 @@ router
   .post(user.login)
   .get((req, res) => res.render("login"));
 
-router.route("/logout").get(user.logout);
+router.route("/logout").post(user.logout);
 
 router.route("/").get((req, res) =>
   res.render("dashboard", {
@@ -84,5 +85,18 @@ router
     })
   )
   .post(user.deleteUser);
+
+router
+  .route("/create-post")
+  .get((req, res) => res.render("post-editor", { editing: "false" }))
+  .post(blogPost.createPost);
+
+router.route("/list-posts").get(blogPost.listPosts);
+
+router.route("/post/:id").get(blogPost.fetchPost);
+
+router.route("/edit-post/:id").post(blogPost.editPost);
+
+router.route("/delete-post/:id").post(blogPost.deletePost);
 
 module.exports = router;

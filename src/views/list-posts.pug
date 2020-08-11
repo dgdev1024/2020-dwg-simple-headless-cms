@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  section.section.list-posts
+    .container.list-posts__container
+      h2.heading.heading--large List of Posts
+
+      if isAdmin === 'true'
+        form.form.list-posts__search-by-user(
+          action="/list-posts",
+          method="GET"
+        )
+          .form-element
+            label.label(for="username") Enter Username:
+            input.input#username(type="text", name="username", placeholder="Enter Username")
+
+          .form-element
+            button.button.button--confirm(type="submit") Search
+
+      if posts.length === 0
+        p.text No posts found.
+      else
+        p.text Page #{page}
+        if firstPage !== true
+          a.button(href=`/list-posts?page=${page - 1}`) Previous Page
+        if lastPage !== true
+          a.button(href=`/list-posts?page=${page + 1}`) Next Page
+
+        each post of posts
+          .list-posts__post
+            a.list-posts__post-link(href=`/post/${post.id}`) #{post.title}
+            p.text.list-posts__post-details Posted by #{post.author} on #{post.postedOn}
+            if post.updatedBy
+              p.text.list-posts__post-update-details.
+                Last updated by #{post.updatedBy} on #{post.updatedOn}
+            form.form.list-posts__form-controls(
+              action=`/delete-post/${post.id}`,
+              method="POST"
+            )
+              button.button.button--danger(type="submit") Delete
+            

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  section.section.list-users
+    .container.list-users__container
+      h2.heading.heading--large.
+        List of Users
+      
+      .list-users__users
+        .list-users__user-entry--top
+          p.list-users__user-id User ID
+          p.list-users__user-name Username
+          p.list-users__user-isadmin Is Admin
+        each user of users
+          .list-users__user-entry
+            p.list-users__user-id #{user.id}
+            p.list-users__user-name #{user.username}
+            p.list-users__user-isadmin #{user.isAdmin}
+          

@@ -8,6 +8,7 @@ const { Router } = require("express");
 const { RequestError } = require("../lib/error-classes");
 const setup = require("../controllers/setup");
 const user = require("../controllers/user");
+const blogPost = require("../controllers/post");
 const router = Router();
 
 router.use(setup.adminAccountExists, (req, res, next) => {
@@ -24,5 +25,8 @@ router.use(setup.adminAccountExists, (req, res, next) => {
 });
 
 router.use(user.authenticateApiKey);
+
+router.route("/list-posts").get(blogPost.listPosts);
+router.route("/post/:id").get(blogPost.fetchPost);
 
 module.exports = router;

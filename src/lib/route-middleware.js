@@ -73,13 +73,13 @@ const generalErrorHandler = (err, req, res, next) => {
 
   // Return or render the error.
   if (err instanceof RequestError) {
-    if (err.options.renderPage) {
-      console.log(err.options);
+    if (req.isPageEndpoint && err.options.renderPage) {
       return res.render(err.options.renderPage, {
         error,
         errorDetails: err.options.details || {},
         isAdmin: req.user ? req.user.isAdmin : false,
         username: req.user ? req.user.username : "",
+        ...err.options,
       });
     } else {
       return res.json({ error, details: err.options.details || {} });

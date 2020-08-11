@@ -242,7 +242,7 @@ const updateUser = async (req, res) => {
   // First, check to see if the calling user is an administrator. If so, then
   // check to see if that admin is attempting to update a different user.
   if (
-    req.user.isAdmin &&
+    req.user.isAdmin === "true" &&
     typeof oldUsername === "string" &&
     oldUsername !== ""
   ) {
@@ -262,7 +262,7 @@ const updateUser = async (req, res) => {
   console.log(thisUser);
 
   // Administrator users can set the administrator status of other users.
-  if (req.user.isAdmin && typeof admin === "boolean") {
+  if (req.user.isAdmin === "true" && typeof admin === "boolean") {
     // Check to see if the admin is attempting to remove their own admin status.
     if (differentUser === false && admin === false) {
       // Do not allow this if this is the only administrator registered.
@@ -331,7 +331,7 @@ const deleteUser = async (req, res) => {
   let differentUser = false;
 
   // Check to see if this user is an administrator.
-  if (thisUser.isAdmin) {
+  if (thisUser.isAdmin === "true") {
     // If the user is an administrator, then check to see if another
     // username - other than their own - was provided.
     const { username } = req.body;

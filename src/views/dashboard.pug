@@ -8,10 +8,19 @@ block content
     h3.heading.
       Administration Controls
     a.button.button--confirm(href="/create-user") Create New User
+    a.button(href="/list-users") List Users
     a.button(href="/update-user") Update User
     a.button.button--danger(href="/delete-user") Delete User
+    a.button(href="/logout") Log Out
   else
     h3.heading.
       User Controls
     a.button(href="/update-user") Update Your Account
     a.button.button--danger(href="/delete-user") Delete Your Account
+    a.button(href="/logout") Log Out
+
+  h3.heading.
+    Post Controls
+  a.button(href="/list-posts") View Posts
+  a.button.button--confirm(href="/create-post") Create New Post
+  
