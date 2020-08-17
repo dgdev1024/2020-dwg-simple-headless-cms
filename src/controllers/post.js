@@ -38,7 +38,7 @@ const createPost = async (req, res) => {
   });
 
   // Redirect the user to the post page.
-  return res.redirect(`/show-post?id=${newPost.id}`);
+  return res.redirect(`/`);
 };
 
 const listPosts = async (req, res) => {
@@ -157,14 +157,7 @@ const editPost = async (req, res) => {
   post.lastUpdatedBy = req.user.username;
   await post.save();
 
-  return res.render("post-editor", {
-    successMessage:
-      req.user.username !== post.authorName
-        ? "The post has been updated."
-        : "Your post has been updated.",
-    post,
-    editing: "true",
-  });
+  return res.redirect(`/`);
 };
 
 const deletePost = async (req, res) => {
@@ -174,14 +167,14 @@ const deletePost = async (req, res) => {
   if (req.user.isAdmin === "true") {
     post = await postModel.findByIdAndRemove(id);
   } else {
-    post = await postModel.findOneAndDelete({ _id: id, author: req.user.id });
+    post = await postModel.findOneAndRemove({ _id: id, author: req.user.id });
   }
 
   if (!post) {
     throw new RequestError(404, "Post not found.", { renderPage: "dashboard" });
   }
 
-  return res.status(200).redirect("/list-posts");
+  return res.status(200).redirect(`/list-posts?username=${post.authorName}`);
 };
 
 // Exports

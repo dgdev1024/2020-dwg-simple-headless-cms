@@ -4,10 +4,12 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/css/layout.css")
+    link(rel="stylesheet", href="/css/header.css")
     block styles
+    block head_scripts
     title DWG Simple Headless CMS
   body
     include includes/header.pug
     main.main
       block content
-    block scripts
+    block body_scripts

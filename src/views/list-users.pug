@@ -1,19 +1,24 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/list-users.css")
+
 block content
   section.section.list-users
     .container.list-users__container
-      h2.heading.heading--large.
+      h2.heading.heading--large.list-users__heading.
         List of Users
       
       .list-users__users
-        .list-users__user-entry--top
+        .list-users__user-entry.list-users__user-entry--top
           p.list-users__user-id User ID
           p.list-users__user-name Username
           p.list-users__user-isadmin Is Admin
+          p.list-users__user-view-posts View Posts
         each user of users
           .list-users__user-entry
             p.list-users__user-id #{user.id}
-            p.list-users__user-name #{user.username}
+            p.list-users__user-name #{user.name}
             p.list-users__user-isadmin #{user.isAdmin}
+            a.list-users__user-view-posts.button(href=`/list-posts?username=${user.name}`) View Posts
           

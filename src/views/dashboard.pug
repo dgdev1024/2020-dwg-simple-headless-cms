@@ -1,26 +1,35 @@
 extends layout
 
-block content
-  h2.heading.heading--large.
-    Hello, #{username}
-  
-  if isAdmin === 'true'
-    h3.heading.
-      Administration Controls
-    a.button.button--confirm(href="/create-user") Create New User
-    a.button(href="/list-users") List Users
-    a.button(href="/update-user") Update User
-    a.button.button--danger(href="/delete-user") Delete User
-    a.button(href="/logout") Log Out
-  else
-    h3.heading.
-      User Controls
-    a.button(href="/update-user") Update Your Account
-    a.button.button--danger(href="/delete-user") Delete Your Account
-    a.button(href="/logout") Log Out
+block styles
+  link(rel="stylesheet", href="/css/dashboard.css")
 
-  h3.heading.
-    Post Controls
-  a.button(href="/list-posts") View Posts
-  a.button.button--confirm(href="/create-post") Create New Post
-  
+block content
+  section.dashboard
+    .container.dashboard__container
+      .dashboard__intro
+        h2.heading.heading--large.
+          Hello, #{username}
+      
+      .dashboard__controls.dashboard__user-controls
+        if isAdmin === 'true'
+          h3.heading.
+            Administration Controls
+          a.button(href="/api-key") View API Keys
+          a.button.button--confirm(href="/create-user") Create New User
+          a.button(href="/list-users") List Users
+          a.button(href="/update-user") Update User
+          a.button.button--danger(href="/delete-user") Delete User
+          a.button(href="/logout") Log Out
+        else
+          h3.heading.
+            User Controls
+          a.button(href="/api-key") View API Keys
+          a.button(href="/update-user") Update Your Account
+          a.button.button--danger(href="/delete-user") Delete Your Account
+          a.button(href="/logout") Log Out
+
+      .dashboard__controls.dashboard__post-controls
+        h3.heading.
+          Post Controls
+        a.button(href="/list-posts") View Posts
+        a.button.button--confirm(href="/create-post") Create New Post

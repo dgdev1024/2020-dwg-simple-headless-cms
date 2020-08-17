@@ -1,0 +1,47 @@
+.update-user__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: "intro" "error" "form";
+  align-items: center;
+  justify-items: center;
+  min-height: calc(100% - 64px);
+  padding-top: 64px;
+}
+
+.update-user__intro {
+  width: 100%;
+  grid-area: intro;
+  align-self: end;
+  text-align: center;
+}
+
+.update-user__error {
+  grid-area: error;
+}
+
+.update-user__form {
+  grid-area: form;
+  align-self: start;
+}
+
+@media (min-width: 800px) {
+  .update-user__container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "intro error" "form error";
+    gap: 16px;
+  }
+
+  .update-user__intro {
+    text-align: left;
+  }
+
+  .update-user__form {
+    align-self: start;
+  }
+
+  .update-user__error {
+    align-self: center;
+  }
+}

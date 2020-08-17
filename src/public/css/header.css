@@ -1,0 +1,20 @@
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 64px;
+  background-color: darkslategray;
+}
+
+.header__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+}
+
+.header__heading {
+  color: whitesmoke;
+}

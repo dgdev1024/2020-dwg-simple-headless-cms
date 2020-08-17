@@ -1,15 +1,19 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/create-user.css")
+
 block content
   section.section.create-user
     .container.create-user__container
-      h2.heading.heading--large.
-        Create New User
-      p.text.
-        Use the form below to create a new user, so they can use your CMS
-        installation.
-      form.form(action="/create-user", method="POST")
+      .create-user__intro
+        h2.heading.heading--large.
+          Create New User
+        p.text.
+          Use the form below to create a new user, so they can use your CMS
+          installation.
 
+      .create-user__error
         if error
           p.text.text--error #{error.message}
           if errorDetails.validationErrors
@@ -20,6 +24,7 @@ block content
         else if successMessage
           p.text.text--success #{successMessage}
 
+      form.form.create-user__form(action="/create-user", method="POST")
         .form__element
           label.label(for="username").
             Create a Username:
@@ -38,7 +43,7 @@ block content
             placeholder="Create a password"
           )
 
-        .form__element
+        .form__element--checkbox
           input#admin.input.input--checkbox(
             type="checkbox"
             name="admin"

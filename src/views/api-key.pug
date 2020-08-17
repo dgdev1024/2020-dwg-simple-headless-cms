@@ -1,0 +1,27 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/api-key.css")
+
+block head_scripts
+  script(src="/js/copy-text.js")
+
+block content
+  section.section.api-key
+    .container.api-key__container
+      .api-key__intro
+        h2.heading.heading--large API Details
+        p.text.
+          Use the public API key and private API secret below to hook up
+          your CMS installation with your website. Be sure to place your
+          private API secret someplace safe, like your environment variables.
+
+      .api-key__public-api-key-container
+        p.text Your public API key is:
+        p.text.text--larger.text--bold.api-key__public-api-key= key
+        button.button(onclick=`copyText('${key}');`) Copy Public Key
+
+      .api-key__private-api-key-container
+        p.text Your private API key is:
+        p.text.text--larger.text--bold.api-key__private-api-key= secret
+        button.button(onclick=`copyText('${secret}');`) Copy Private Key

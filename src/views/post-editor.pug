@@ -1,18 +1,22 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/post-editor.css")
+
+block head_scripts
+  script(src="https://cdn.jsdelivr.net/npm/marked/marked.min.js")
+
 block content
   section.section.post-editor
     .container.post-editor__container
-      h2.heading.heading--large Post Editor
-      p.text.
-        Use the form below to #{editing === 'true' ? 'edit' : 'create'} your post.#[br]
-        You can format your post using Markdown syntax. You can learn more about Markdown here:
-        #[a.link(href="https://commonmark.org/help/", target="_blank") https://commonmark.org/help/]
+      .post-editor__intro
+        h2.heading.heading--large Post Editor
+        p.text.
+          Use the form below to #{editing === 'true' ? 'edit' : 'create'} your post.#[br]
+          You can format your post using Markdown syntax. You can learn more about Markdown here:
+          #[a.link(href="https://commonmark.org/help/", target="_blank") https://commonmark.org/help/]
 
-      form.form(
-        method="POST",
-        action=(editing === 'true' ? `/edit-post/${post.id}` : '/create-post')
-      )
+      .post-editor__error
         if error
           p.text.text--error #{error.message}
           if errorDetails.validationErrors
@@ -20,7 +24,11 @@ block content
               each validationError in errorDetails.validationErrors
                 li.list-item #{validationError}
 
-        .form-element
+      form.form.post-editor__form(
+        method="POST",
+        action=(editing === 'true' ? `/edit-post/${post.id}` : '/create-post')
+      )
+        .form__element
           label.label(for="title") Post Title
           input#title.input(
             type="text"
@@ -29,16 +37,24 @@ block content
             placeholder="Enter a Title"
           )
 
-        .form-element
+        .form__element
           label.label(for="body") Post Body
-          textarea#body.textarea(
+          textarea#body.input.input--textarea.post-editor__textarea(
             name="body",
             placeholder="Write out your post"
           ).
             #{editing === 'true' ? post.body : ''}
 
-        .form-element.form-element--button-grid
+        .form__element.form__element--button-grid
           if editing === 'true'
             button.button.button--confirm(type="submit") Finish Editing
           else
             button.button.button--confirm(type="submit") Create Post
+
+      .post-editor__preview
+        h2.heading.heading--large Preview Post
+        .post-editor__preview-area
+
+
+block body_scripts
+  script(src="/js/preview-markdown.js")

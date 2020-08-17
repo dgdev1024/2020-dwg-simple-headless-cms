@@ -11,6 +11,7 @@ const setup = require("../controllers/setup");
 const user = require("../controllers/user");
 const blogPost = require("../controllers/post");
 const userModel = require("../models/user");
+const { decryptText } = require("../lib/crypto");
 const router = Router();
 
 router.use(setup.adminAccountExists, (req, res, next) => {
@@ -52,7 +53,7 @@ router
   .post(user.login)
   .get((req, res) => res.render("login"));
 
-router.route("/logout").post(user.logout);
+router.route("/logout").get(user.logout);
 
 router.route("/").get((req, res) =>
   res.render("dashboard", {
@@ -60,6 +61,15 @@ router.route("/").get((req, res) =>
     isAdmin: req.user.isAdmin,
   })
 );
+
+router.route("/api-key").get((req, res) => {
+  const { apiKey, apiSecret } = req.user;
+
+  return res.render("api-key", {
+    key: apiKey,
+    secret: decryptText(apiSecret, process.env.AUTH_SECRET),
+  });
+});
 
 router
   .route("/create-user")
@@ -79,7 +89,7 @@ router
 
 router
   .route("/delete-user")
-  .get(user.adminPageGuard, (req, res) =>
+  .get((req, res) =>
     res.render("delete-user", {
       isAdmin: req.user.isAdmin,
     })

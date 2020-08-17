@@ -9,7 +9,7 @@ const userModel = require("../models/user");
 const validation = require("./validation-schemas");
 
 // Local Login Strategy
-const local = new passportLocal((username, password, done) =>
+const local = new passportLocal((username = "", password = "", done) =>
   (async () => {
     try {
       await validation.userCreation.validate({ username, password });

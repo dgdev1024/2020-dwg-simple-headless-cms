@@ -1,0 +1,47 @@
+.setup__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: "intro" "error" "form";
+  align-items: center;
+  justify-items: center;
+  min-height: calc(100% - 64px);
+  padding-top: 64px;
+}
+
+.setup__intro {
+  width: 100%;
+  grid-area: intro;
+  align-self: end;
+  text-align: center;
+}
+
+.setup__error {
+  grid-area: error;
+}
+
+.setup__form {
+  grid-area: form;
+  align-self: start;
+}
+
+@media (min-width: 800px) {
+  .setup__container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "intro error" "form error";
+    gap: 16px;
+  }
+
+  .setup__intro {
+    text-align: left;
+  }
+
+  .setup__form {
+    align-self: start;
+  }
+
+  .setup__error {
+    align-self: center;
+  }
+}

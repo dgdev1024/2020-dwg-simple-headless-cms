@@ -98,7 +98,7 @@ const login = (req, res, next) => {
       }
 
       // Redirect the newly-logged-in user to the dashboard.
-      return res.redirect("/");
+      return res.status(200).redirect("/");
     });
   })(req, res, next);
 };
@@ -303,7 +303,7 @@ const updateUser = async (req, res) => {
   }
 
   // If new API keys are requested, then generate them.
-  if (typeof newKeys === "boolean" && newKeys === true) {
+  if (typeof newKeys === "string" && newKeys === "on") {
     thisUser.generateApiKeys();
   }
 
@@ -358,7 +358,7 @@ const deleteUser = async (req, res) => {
       // must first remove their administrator status from the 'Update User'
       // page.
       throw new RequestError(409, "Admin accounts cannot be deleted.", {
-        renderPage: "dashboard",
+        renderPage: "delete-user",
       });
     }
   }

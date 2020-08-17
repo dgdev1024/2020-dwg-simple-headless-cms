@@ -1,0 +1,14 @@
+.list-users__heading {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.list-users__user-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  min-width: 600px;
+  overflow: auto;
+  padding-bottom: 8px;
+}

@@ -1,0 +1,31 @@
+.api-key__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "intro" "public" "private";
+  justify-items: center;
+  gap: 16px;
+  padding-top: 80px;
+}
+
+.api-key__intro {
+  grid-area: intro;
+  text-align: center;
+}
+
+.api-key__public-api-key-container {
+  grid-area: public;
+  text-align: center;
+}
+
+.api-key__private-api-key-container {
+  grid-area: private;
+  text-align: center;
+}
+
+@media (min-width: 800px) {
+  .api-key__container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "intro intro" "public private";
+  }
+}

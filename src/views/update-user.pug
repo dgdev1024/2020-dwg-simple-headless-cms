@@ -1,21 +1,25 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/update-user.css")
+
 block content
   section.section.update-user
     .container.update-user__container
-      if isAdmin === 'true'
-        h2.heading.heading--large.
-          Update User
-        p.text.
-          Use the form below to update a user's details. Leave the Target
-          Username textbox blank to update your own user details.
-      else
-        h2.heading.heading--large.
-          Update Your Details
-        p.text.
-          Use the form below to update your user details.
-      form.form(action="/update-user", method="POST")
+      .update-user__intro
+        if isAdmin === 'true'
+          h2.heading.heading--large.
+            Update User
+          p.text.
+            Use the form below to update a user's details. Leave the Target
+            Username textbox blank to update your own user details.
+        else
+          h2.heading.heading--large.
+            Update Your Details
+          p.text.
+            Use the form below to update your user details.
 
+      .update-user__error
         if error
           p.text.text--error #{error.message}
           if errorDetails.validationErrors
@@ -23,6 +27,7 @@ block content
               each validationError in errorDetails.validationErrors
                 li.list-item #{validationError}
 
+      form.form.update-user__form(action="/update-user", method="POST")
         if isAdmin === 'true'
           .form__element
             label.label(for="old-username").
@@ -51,7 +56,7 @@ block content
             placeholder="Enter a New Password"
           )
 
-        .form__element
+        .form__element--checkbox
           input#new-keys.input.input--checkbox(
             type="checkbox",
             name="newKeys"
@@ -60,7 +65,7 @@ block content
             Request new API keys.
 
         if isAdmin === 'true'
-          .form__element
+          .form__element--checkbox
             input#admin.input.input--checkbox(
               type="checkbox",
               name="admin",

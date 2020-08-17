@@ -1,14 +1,19 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/login.css")
+
 block content
   section.section.login
     .container.login__container
-      h2.heading.heading--large.
-        Log In
-      form.form(action="/login", method="POST")
 
+      .login__intro
+        h2.heading.heading--large.
+          Log In
         if error
           p.text.text--error #{error.message}
+
+      form.form.login__form(action="/login", method="POST")
 
         .form__element
           label.label(for="username").

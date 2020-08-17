@@ -1,15 +1,20 @@
 extends layout
 
+block styles
+  link(rel="stylesheet", href="/css/setup.css")
+
 block content
   section.section.setup
     .container.setup__container
-      h2.heading.heading--large.
-        CMS Setup
-      p.text.
-        Use the form below to create an administrator user and begin
-        using your new CMS installation.
-      form.form(action="/setup", method="POST")
 
+      .setup__intro
+        h2.heading.heading--large.
+          CMS Setup
+        p.text.text--italic.
+          Use the form below to create an administrator user and begin
+          using your new CMS installation.
+
+      .setup__error
         if error
           p.text.text--error #{error.message}
           if errorDetails.validationErrors
@@ -17,6 +22,7 @@ block content
               each validationError in errorDetails.validationErrors
                 li.list-item #{validationError}
 
+      form.form.setup__form(action="/setup", method="POST")
         .form__element
           label.label(for="username").
             Create a Username:

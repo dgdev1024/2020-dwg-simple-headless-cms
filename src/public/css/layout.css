@@ -1,0 +1,194 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+Pro:wght@400;600&family=Source+Serif+Pro:wght@600&display=swap");
+
+/* CSS Reset */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Root Element */
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+/* Sections and Containers */
+.section {
+  min-height: 100vh;
+  background-color: whitesmoke;
+}
+
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+/* Headings */
+.heading {
+  font-family: "Source Serif Pro", serif;
+  font-size: 1.5rem;
+}
+
+.heading--large {
+  font-size: 2rem;
+}
+
+.heading--small {
+  font-size: 1rem;
+}
+
+/* Text */
+.text {
+  padding: 8px 0px;
+  font-size: 1rem;
+}
+
+.text--small {
+  font-size: 0.9rem;
+}
+
+.text--smaller {
+  font-size: 0.8rem;
+}
+
+.text--large {
+  font-size: 1.1rem;
+}
+
+.text--larger {
+  font-size: 1.2rem;
+}
+
+.text--bold {
+  font-weight: bold;
+}
+
+.text--italic {
+  font-style: italic;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--error {
+  color: darkred;
+}
+
+/* Lists */
+.list {
+  padding: 8px 0px;
+  list-style: none;
+}
+
+.list--error {
+  color: darkred;
+}
+
+/* Forms */
+.form {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.form__element {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0px;
+}
+
+.form-element--checkbox {
+  display: block;
+}
+
+.input {
+  margin: 8px 0px;
+  padding: 8px;
+  background-color: white;
+  color: black;
+  font-family: "Source Code Pro", monospace;
+  border: none;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input--textarea {
+  height: 240px;
+  resize: none;
+}
+
+.input--checkbox {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.button {
+  padding: 8px;
+  background-color: darkblue;
+  color: white;
+  text-decoration: none;
+  border: none;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.button--confirm {
+  background-color: darkgreen;
+}
+
+.button--danger {
+  background-color: darkred;
+}
+
+.button:hover {
+  filter: brightness(125%);
+  cursor: pointer;
+}
+
+/* Large-end Small Devices */
+@media (min-width: 600px) {
+}
+
+/* Tablets */
+@media (min-width: 800px) {
+  .container {
+    width: 90%;
+  }
+
+  .form {
+    max-width: 400px;
+  }
+}
+
+/* Small Desktops */
+@media (min-width: 1000px) {
+  .container {
+    width: 85%;
+  }
+
+  .list {
+    padding-left: 16px;
+    list-style: disc;
+  }
+
+  .form {
+    max-width: 800px;
+  }
+}
+
+/* Large Desktops */
+@media (min-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+}

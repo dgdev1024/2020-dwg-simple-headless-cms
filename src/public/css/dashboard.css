@@ -1,0 +1,54 @@
+.dashboard__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "intro" "user" "post";
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  padding-top: 80px;
+}
+
+.dashboard__intro {
+  grid-area: intro;
+}
+
+.dashboard__user-controls {
+  grid-area: user;
+}
+
+.dashboard__post-controls {
+  grid-area: post;
+}
+
+.dashboard__controls {
+  width: 100%;
+}
+
+.dashboard__controls .heading {
+  text-align: center;
+}
+
+.dashboard__controls .button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 8px auto;
+  text-align: center;
+}
+
+@media (min-width: 800px) {
+  .dashboard__container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "intro intro" "user post";
+    align-items: start;
+  }
+
+  .dashboard__user-controls {
+    justify-self: end;
+  }
+
+  .dashboard__post-controls {
+    justify-self: start;
+  }
+}
