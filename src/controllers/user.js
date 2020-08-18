@@ -139,7 +139,7 @@ const authenticateApiKey = async (req) => {
   }
 
   // Resolve the public API key to a user in our database.
-  const user = await userModel.findOne({ publicApiKey: apiKey });
+  const user = await userModel.findOne({ apiKey });
   if (!user) {
     throw new RequestError(401, "Invalid API credentials.");
   }

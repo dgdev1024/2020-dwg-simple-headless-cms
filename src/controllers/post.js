@@ -52,7 +52,7 @@ const listPosts = async (req, res) => {
     (req.isPageEndpoint && req.user.isAdmin === "false") ||
     !username
   ) {
-    username = req.user.username;
+    username = req.isApiEndpoint ? req.apiUser.username : req.user.username;
   }
 
   let posts = await postModel
@@ -66,7 +66,9 @@ const listPosts = async (req, res) => {
     title: post.title,
     author: post.authorName,
     postedOn: moment(post.postedOn).format("MMMM Do YYYY [at] h:mm:ss a"),
-    updatedOn: moment(post.updatedOn).format("MMMM Do YYYY [at] h:mm:ss a"),
+    updatedOn: post.updatedOn
+      ? moment(post.updatedOn).format("MMMM Do YYYY [at] h:mm:ss a")
+      : "",
     updatedBy: post.lastUpdatedBy,
   }));
 
