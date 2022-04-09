@@ -37,7 +37,7 @@
     "helmet": "^3.23.3",
     "http-status-codes": "^1.4.0",
     "marked": "^1.1.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
